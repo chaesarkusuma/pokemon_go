@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Pokemon> pokemon = dataPokemon;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +26,12 @@ class _HomePageState extends State<HomePage> {
         leading: Icon(Icons.arrow_back_outlined),
         actions: [Icon(Icons.favorite), SizedBox(width: 10)],
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemBuilder: (_, index) => PokemonCard(pokemon: pokemon[index]),
+      body: ListView.builder(
         itemCount: pokemon.length,
-      ),
+        itemBuilder: (BuildContext context, int index){
+          return PokemonList(pokemon: pokemon[index]);
+        },
+      )
     );
   }
 }

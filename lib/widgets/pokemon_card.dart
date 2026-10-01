@@ -2,14 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_apps/models/pokemon.dart';
 import 'package:flutter_apps/widgets/type_chip.dart';
 
+import '../pages/detail_page.dart';
+
 class PokemonCard extends StatelessWidget {
   final Pokemon pokemon;
   const PokemonCard({super.key, required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
+
+    //funcion intent ke detail
+    void _detailPage(Pokemon pokemon) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => DetailPage(pokemon: pokemon)),
+      );
+    }
+
+
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        _detailPage(pokemon);
+      },
       child: Card(
         elevation: 6,
         shape: RoundedRectangleBorder(

@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/data/pokemon_data.dart';
+import 'package:flutter_apps/models/pokemon.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  final Pokemon pokemon;
+  const DetailPage({super.key, required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Nama Pokemon")),
+      appBar: AppBar(title: Text(pokemon.name)),
       body: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(20),
-              child: Image.asset("assets/bulbasaur.jpg"),
+              child: Image.asset(pokemon.image),
             ),
           ),
           Container(
@@ -30,7 +32,7 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Bulbasaur",
+                  pokemon.name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -49,10 +51,10 @@ class DetailPage extends StatelessWidget {
                       style: BorderStyle.solid,
                     ),
                   ),
-                  child: Text("Water"),
+                  child: Text(pokemon.type),
                 ),
                 Text(
-                  "Base Power : 55",
+                  "Base Power : ${pokemon.basePower}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                 ),
                 SizedBox(height: 10.0),
@@ -61,7 +63,8 @@ class DetailPage extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 SizedBox(height: 10.0),
-                Text(dataPokemon[0].description, // mengambil deskipsi dari data pokemon
+                Text(
+                pokemon.description, // mengambil deskipsi dari data pokemon
                   textAlign: TextAlign.justify,
                   style: TextStyle(),
                 ),
