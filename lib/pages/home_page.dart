@@ -4,8 +4,6 @@ import 'package:flutter_apps/models/pokemon.dart';
 import 'package:flutter_apps/widgets/pokemon_card.dart';
 import 'package:flutter_apps/widgets/pokemon_list.dart';
 
-import 'detail_page.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -16,22 +14,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Pokemon> pokemon = dataPokemon;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Pokemon Go"),
-        centerTitle: true,
-        leading: Icon(Icons.arrow_back_outlined),
-        actions: [Icon(Icons.favorite), SizedBox(width: 10)],
+      appBar: AppBar(title: const Text("Pokemon GO", style: TextStyle(fontFamily: 'Pokemon', fontSize: 32, color: Colors.amber),), centerTitle: true),
+      body: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth <= 425) {
+                  return ListView.builder(
+                    itemCount: pokemon.length,
+                    itemBuilder: (context, index) {
+                      return PokemonList(pokemon: pokemon[index]);
+                    },
+                  );
+                } else {
+                  return GridView.builder(
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: pokemon.length,
+                    itemBuilder: (context, index) {
+                      return PokemonCard(pokemon: pokemon[index]);
+                    },
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
-      body: ListView.builder(
-        itemCount: pokemon.length,
-        itemBuilder: (BuildContext context, int index){
-          return PokemonList(pokemon: pokemon[index]);
-        },
-      )
     );
   }
 }
