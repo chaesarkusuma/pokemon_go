@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Pokemon {
   //properties
   final String name;
@@ -21,9 +19,6 @@ class Pokemon {
   final List<String>?
   evolutions; // Contoh: ["Bulbasaur", "Ivysaur", "Venusaur"]
 
-
-  final Bool isFavorite;
-
   Pokemon({
     required this.name,
     required this.image,
@@ -39,7 +34,6 @@ class Pokemon {
     required this.weaknesses,
     required this.stats,
     required this.evolutions,
-    required this.isFavorite,
   });
 
 //  CTRL + ALT + L => REFORMAT CODE
