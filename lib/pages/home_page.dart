@@ -34,8 +34,11 @@ class _HomePageState extends State<HomePage> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) =>
-            DetailPage(pokemon: pokemon, type: "", isFavorite: isFavorite),
+        builder: (_) => DetailPage(
+          pokemon: pokemon,
+          type: pokemon.type,
+          isFavorite: isFavorite,
+        ),
       ),
     );
     // ! + =
@@ -50,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  bool isSwitch = false;
+  bool isSwitch = false; // gak dipake sample aja
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +143,8 @@ class _HomePageState extends State<HomePage> {
                         },
                         onFavoriteTap: () {
                           _toggleFavorite(pokemon.name);
-                        }, type: pokemon.type,
+                        },
+                        type: pokemon.type,
                       );
                     },
                     itemCount: filtered.length,
@@ -154,8 +158,8 @@ class _HomePageState extends State<HomePage> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: column,
                       crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 3 / 4,
+                      mainAxisExtent: 340,
+                      mainAxisSpacing: 0,
                     ),
                     itemBuilder: (context, index) {
                       final pokemon = filtered[index];

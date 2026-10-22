@@ -8,7 +8,12 @@ class DetailPage extends StatefulWidget {
   final String type;
   final bool isFavorite;
 
-  const DetailPage({super.key, required this.pokemon, required this.type, required this.isFavorite});
+  const DetailPage({
+    super.key,
+    required this.pokemon,
+    required this.type,
+    required this.isFavorite,
+  });
 
   Color _typeColor() {
     if (type.contains('Water')) return Colors.blue;
@@ -44,7 +49,13 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
         backgroundColor: widget._typeColor().withOpacity(0.2),
-        actions: [Icon(Icons.favorite_border_rounded), SizedBox(width: 15)],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.favorite, color: Colors.pink),
+          ),
+          SizedBox(width: 15),
+        ],
         centerTitle: true,
       ),
       body: LayoutBuilder(
@@ -129,32 +140,32 @@ class _DetailPageState extends State<DetailPage> {
                                 children: widget.pokemon.skills
                                     .map(
                                       (e) => Container(
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: 6,
-                                      horizontal: 6,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(30),
-                                        topLeft: Radius.circular(30),
+                                        padding: EdgeInsets.all(10),
+                                        margin: EdgeInsets.symmetric(
+                                          vertical: 6,
+                                          horizontal: 6,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(30),
+                                            topLeft: Radius.circular(30),
+                                          ),
+                                          border: Border.all(
+                                            color: widget._typeColor(),
+                                            width: 2,
+                                            style: BorderStyle.solid,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.star),
+                                            SizedBox(width: 5),
+                                            Text(e),
+                                          ],
+                                        ),
                                       ),
-                                      border: Border.all(
-                                        color: widget._typeColor(),
-                                        width: 2,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.star),
-                                        SizedBox(width: 5),
-                                        Text(e),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                    )
                                     .toList(),
                               ),
                             ],
@@ -294,29 +305,29 @@ class _DetailPageState extends State<DetailPage> {
                           children: widget.pokemon.skills
                               .map(
                                 (e) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                margin: EdgeInsets.symmetric(vertical: 4),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                    width: 0.1,
-                                    color: Colors.black,
-                                    style: BorderStyle.solid,
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    padding: EdgeInsets.all(4),
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        width: 0.1,
+                                        color: Colors.black,
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.star),
+                                        SizedBox(width: 5),
+                                        Text(e),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.star),
-                                    SizedBox(width: 5),
-                                    Text(e),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
+                              )
                               .toList(),
                         ),
                         SizedBox(height: 15),
@@ -333,7 +344,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     child: ClipRRect(
                                       borderRadius:
-                                      BorderRadiusGeometry.circular(25),
+                                          BorderRadiusGeometry.circular(25),
                                       child: Image.network(
                                         toElement,
                                         fit: BoxFit.cover,
@@ -359,8 +370,8 @@ class _DetailPageState extends State<DetailPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: widget.pokemon.movies.asMap().entries.map((
-                              entry,
-                              ) {
+                            entry,
+                          ) {
                             return GestureDetector(
                               onTap: () => _controller.animateToPage(entry.key),
                               child: Container(
@@ -373,15 +384,15 @@ class _DetailPageState extends State<DetailPage> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                  (Theme.of(context).brightness ==
-                                      Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black)
-                                      .withValues(
-                                    alpha: _current == entry.key
-                                        ? 0.9
-                                        : 0.4,
-                                  ),
+                                      (Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : Colors.black)
+                                          .withValues(
+                                            alpha: _current == entry.key
+                                                ? 0.9
+                                                : 0.4,
+                                          ),
                                 ),
                               ),
                             );

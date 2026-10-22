@@ -66,7 +66,9 @@ class PokemonList extends StatelessWidget {
         trailing: IconButton(
           onPressed: onFavoriteTap,
           icon: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
+            isFavorite
+                ? Icons.favorite
+                : Icons.favorite_border,
           ),
           color: isFavorite ? Colors.pink : Colors.grey,
         ),
